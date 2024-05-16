@@ -1,0 +1,31 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 28 Mar, 2024, 11:06:39 AM
+    Author     : gauri
+*/
+
+*
+{
+    /* Basic styles for the button */
+.logout-btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover animation */
+.logout-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Add more animations as needed */
+
+}

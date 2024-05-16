@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management System</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<center>
+    <h1>Inventory Management System</h1>
+   
+    <div>
+        <label for="name">Item Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" min="1" required>
+        <button type="button" onclick="subtractStock()">Subtract Stock</button>
+    </div>
+    <br>
+    <table id="inventoryTable">
+        <thead>
+            <tr>
+              
+                
+            </tr>
+        </thead>
+        <tbody id="inventoryBody">
+            <!-- Inventory data will be dynamically inserted here -->
+        </tbody>
+    </table>
+
+    <script>
+        async function subtractStock() {
+            const name = document.getElementById("name").value;
+            const quantity = parseInt(document.getElementById("quantity").value);
+            try {
+                const response = await fetch(`subtractStock.jsp?name=${name}&quantity=${quantity}`);
+                if (response.ok) {
+                    alert("Stock subtracted successfully!");
+                    fetchInventoryData(); // Refresh inventory data after subtraction
+                } else {
+                    alert("Failed to subtract stock. Please try again.");
+                }
+            } catch (error) {
+                console.error('Error subtracting stock:', error);
+            }
+        }
+
+        async function fetchInventoryData() {
+            try {
+                const response = await fetch('Alldata.jsp');
+                const data = await response.text();
+                document.getElementById('inventoryBody').innerHTML = data;
+            } catch (error) {
+                console.error('Error fetching inventory data:', error);
+            }
+        }
+
+        // Fetch inventory data when the page loads
+        fetchInventoryData();
+    </script>
+</center>
+</body>
+</html>
